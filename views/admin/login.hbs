@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta title="description" content="Login page of Shahal's blog">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shahal</title>
+  <link rel="stylesheet" href="/css/admin.css">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+  <div class="topnav">
+    <a id="home" href="/admin">Home</a>
+    <a id="login" href="/admin/login">Login</a>
+
+  </div>
+
+
+
+
+
+
+  <form class="modal-content animate" style="" action="/admin/login" method="post">
+    <div class="imgcontainer">
+      <img src="/img/accountCircle.png" alt="Avatar" class="avatar">
+    </div>
+    {{#if err}}
+    <div id="alert-container" class="container">
+      <div class="alert">
+        <span class="closebtn" onclick="document.getElementById('alert-container').style.display='none';">&times;</span>
+        {{err}}
+      </div>
+    </div>
+    {{/if}}
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input class="input" type="text" placeholder="Enter Username" name="uname" required value="{{username}}">
+
+      <label for="psw"><b>Password</b></label>
+      <input class="input" type="password" placeholder="Enter Password" name="psw" required value="{{password}}">
+
+      <button class="button" type="submit">Login</button>
+
+    </div>
+
+
+  </form>
+
+
+
+  <script>
+    let login = document.getElementById('login')
+    if (window.location.pathname === '/admin/login') {
+      login.classList.add('active')
+    }
+  </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="{{post.description.full}}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shahal</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+   <div class="topnav">
+  <a id="home" href="/">Home</a>
+  <a id="about" href="/about">About</a>
+  <a  id="contact" href="/contact">Contact</a>
+  <div class="search-container">
+    <form action="/search" method="GET">
+      <input type="text" placeholder="Search.." name="q">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
+</div>
+
+<br>
+    <div class="wrapper">
+        <div class="news-single">
+            <a href="/" class="anger-tag" >&larr; Back</a>
+            {{#if post}}
+            <h3>
+                {{post.title.full}}
+            </h3>
+            <p>
+                {{{post.description.full}}}
+            </p>
+            {{else}}
+            <br>
+            No posts found.
+            {{/if}}
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="admin panel of Shahal's blog"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shahal</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+   <div class="topnav">
+  <a id="home" href="/admin">Home</a>
+  <a id="new" href="/admin/compose">New</a>
+  <a  id="about" href="/admin/edit-about">About</a>
+  <a id="settings" href="/admin/settings">Settings</a>
+  <div class="search-container">
+    <form action="/admin/search" method="GET">
+      <input type="text" placeholder="Search.." name="q">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
+</div>
+<br>
+<div class="container">
+<div class="wrapper">
+    <div class="news">
+        {{#if posts.length}}
+        {{#each posts}}
+        <a href="/admin/post/{{this.id}}" class="news__card">
+            <img src="{{this.image}}" alt="{{this.title.small}}" style="margin-left: auto;margin-right: auto;display: block;width: 100%;">
+            <h3>
+                {{this.title.small}}
+            </h3>
+        </a>
+        {{/each}}
+        {{else}}
+        No posts found.
+        {{/if}}
+
+    </div>
+</div>
+</div>
+
+<script>
+        let home = document.getElementById('home')
+        if(window.location.pathname  === '/admin'){
+            home.classList.add('active')
+        }
+</script>
+
+</body>
+
+</html>
