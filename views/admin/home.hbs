@@ -30,7 +30,7 @@
     <div class="news">
         {{#if posts.length}}
         {{#each posts}}
-        <a href="/admin/post/{{this.id}}" class="news__card">
+        <a href="/admin/post/{{this._id}}" class="news__card">
             <img src="{{this.image}}" alt="{{this.title.small}}" style="margin-left: auto;margin-right: auto;display: block;width: 100%;">
             <h3>
                 {{this.title.small}}

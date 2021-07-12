@@ -44,7 +44,7 @@
     <div class="topnav">
         <a id="home" href="/admin">Home</a>
         <a id="new" href="/admin/compose">New</a>
-        <a id="about" href="/edit-about">About</a>
+        <a id="about" href="/admin/edit-about">About</a>
         <a id="settings" href="/admin/settings">Settings</a>
         <div class="search-container">
             <form action="/search" method="GET">
@@ -61,8 +61,8 @@
             <a href="/admin" class="anger-tag">&larr; Back</a>
             {{#if post}}
             <div class="align-right">
-                <a class="btn" href="/admin/edit-post/{{post.id}}"><i class="fa fa-edit"></i></a>
-                <a class="btn red" href="/admin/delete-post/{{post.id}}" style="margin-left: 6px;"><i
+                <a class="btn" href="/admin/edit-post/{{post._id}}"><i class="fa fa-edit"></i></a>
+                <a class="btn red" href="/admin/delete-post/{{post._id}}" style="margin-left: 6px;"><i
                         class="fa fa-trash"></i> </a>
             </div>
             <br>

@@ -7,6 +7,20 @@ const session = require('express-session')
 const app = express()
 const port = process.env.PORT || 5000
 
+// Database setup
+const Datastore = require('nedb')
+let db = {}
+db.posts = new Datastore({filename:'db/posts.db',autoload:true,onload(err){
+    if(err) console.log("Error when loading posts db : ",err);
+    console.log("Posts db Loaded !");
+}})
+db.about = new Datastore({filename:'db/about.db',autoload:true,onload(err){
+    if(err) console.log("Error when loading about db : ",err);
+    console.log("About db Loaded !");
+}})
+module.exports = {db}
+
+
 // Static Files
 app.use(express.static('public'))
 app.use('/css', express.static(__dirname + 'public/css'))

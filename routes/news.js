@@ -1,24 +1,22 @@
 const express = require('express')
-const fs = require('fs')
 const newsRouter = express.Router()
-const path = require('path')
-const open = require('open')
+const {db} = require('../app')
 
 
 
 newsRouter.get('/', async (req, res) => {
-    let posts = JSON.parse(fs.readFileSync(path.resolve(`${__dirname}/..`, 'posts.json'), 'utf8'))
-    res.render('news', { posts, layout: false })
+    
+    db.posts.find({},(err,data)=>{
+       res.render('news', { posts:data, layout: false })
+   })
 })
 
 newsRouter.get('/post/:id', async (req, res) => {
     if (req.params.id) {
 
-        let posts = JSON.parse(fs.readFileSync(path.resolve(`${__dirname}/..`, 'posts.json'), 'utf8'))
-
-        let post = posts.find(post => req.params.id == post.id)
-
-        res.render('newsSingle', { layout: false, post })
+       db.posts.findOne({_id:req.params.id},(err,data)=>{
+           res.render('newsSingle', { layout: false, post:data })
+       })
 
     } else {
         return res.redirect('/')
@@ -29,34 +27,34 @@ newsRouter.get('/post/:id', async (req, res) => {
 
 newsRouter.get('/search', async (req, res) => {
     let search = req.query.q
-    let posts = JSON.parse(fs.readFileSync(path.resolve(`${__dirname}/..`, 'posts.json'), 'utf8'))
-    if (search) {
-        let newPosts = posts.filter(post => {
-            let title = post.title.full.toLowerCase()
-            let q = search.toLowerCase()
-            if (title.includes(q)) {
-                return post
-            }
-        })
-        res.render('news', { layout: false, posts: newPosts })
-    } else {
-        return res.render('news', { layout: false, posts })
-    }
+    db.posts.find({},(err,posts)=>{
+        if (search) {
+            let newPosts = posts.filter(post => {
+                let title = post.title.full.toLowerCase()
+                let q = search.toLowerCase()
+                if (title.includes(q)) {
+                    return post
+                }
+            })
+            res.render('news', { layout: false, posts: newPosts })
+        } else {
+            return res.render('news', { layout: false, posts })
+        }
+    })
 
 })
 
 newsRouter.get('/about', async (req, res) => {
-    let about = JSON.parse(fs.readFileSync(path.resolve(`${__dirname}/..`, 'about.json'), 'utf8'))
-    res.render('about', { layout: false, about })
+    db.about.find({},(err,data)=>{
+        res.render('about', { layout: false, about:data[0] })
+    })
 })
 
 
 newsRouter.get('/contact', async (req, res) => {
-    let about = JSON.parse(fs.readFileSync(path.resolve(`${__dirname}/..`, 'about.json'), 'utf8'))
-    open(about.contact, function (err) {
-        if (err) return res.redirect('/')
+    db.about.find({},(err,data)=>{
+        res.redirect(data[0].contact)
     })
-    res.redirect('back')
 })
 
 module.exports = newsRouter
