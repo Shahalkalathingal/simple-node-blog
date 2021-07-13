@@ -23,6 +23,7 @@ const isNotLoggedIn = (req, res, next) => {
 
 adminRouter.get('/', isLoggedIn, async (req, res) => {
   db.posts.find({}, (err, data) => {
+    console.log(data);
     res.render('admin/home', { layout: false, posts: data })
   })
 
@@ -119,6 +120,7 @@ adminRouter.post('/compose', isLoggedIn, async (req, res) => {
     }
     
     db.posts.insert(post,(err,data)=>{
+      console.log(data);
       res.redirect('/admin')
     })
 
@@ -132,6 +134,7 @@ adminRouter.get('/edit-post/:id', isLoggedIn, async (req, res) => {
   }
   db.posts.findOne({_id:req.params.id},(err,post)=>{
     if (!post || post === undefined || post === null) {
+      console.log(post);
       return res.redirect('/admin')
     }
     res.render('admin/edit-post', { layout: false, post })
@@ -172,6 +175,7 @@ adminRouter.post('/edit-post/:id', isLoggedIn, async (req, res) => {
   }
 
   db.posts.update({_id:req.params.id},newPost,{},(err,data)=>{
+    console.log(data);
     res.redirect('/admin')
   })
 
@@ -186,6 +190,7 @@ adminRouter.get('/delete-post/:id', isLoggedIn, async (req, res) => {
   }
 
   db.posts.remove({_id:req.params.id},{},(err,data)=>{
+    console.log(data);
     res.redirect('/admin')
   })
 })
@@ -195,6 +200,7 @@ adminRouter.get('/delete-post/:id', isLoggedIn, async (req, res) => {
 adminRouter.get('/edit-about', isLoggedIn, async (req, res) => {
   db.about.find({},(err,data)=>{
     let about = data[0]
+    console.log(data);
     res.render('admin/edit-about', { layout: false, title: about.title, content: about.description, contact: about.contact,_id:about._id })
   })
 })
@@ -214,6 +220,7 @@ adminRouter.post('/edit-about', isLoggedIn, async (req, res) => {
   }
 
   db.about.update({_id:req.body._id},about,{},(err,data)=>{
+    console.log(data);
     res.redirect('/admin')
   })
 })
