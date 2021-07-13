@@ -9,16 +9,6 @@ const port = process.env.PORT || 5000
 
 // Database setup
 const Datastore = require('nedb')
-let db = {}
-db.posts = new Datastore({filename:'db/posts.db',autoload:true,onload(err){
-    if(err) console.log("Error when loading posts db : ",err);
-    console.log("Posts db Loaded !");
-}})
-db.about = new Datastore({filename:'db/about.db',autoload:true,onload(err){
-    if(err) console.log("Error when loading about db : ",err);
-    console.log("About db Loaded !");
-}})
-module.exports = {db}
 
 
 // Static Files
@@ -44,6 +34,21 @@ app.use(session({
     saveUninitialized:false,
     resave:false
 }))
+
+let db = {}
+db.posts = new Datastore({filename:'db/posts.db',onload(err){
+    if(err) console.log("Error when loading posts db : ",err);
+    console.log("Posts db Loaded !");
+}})
+db.about = new Datastore({filename:'db/about.db',onload(err){
+    if(err) console.log("Error when loading about db : ",err);
+    console.log("About db Loaded !");
+}})
+module.exports = {db}
+db.about.loadDatabase()
+db.posts.loadDatabase()
+
+
 // Routes
 const newsRouter = require('./routes/news')
 const adminRouter = require('./routes/admin')
