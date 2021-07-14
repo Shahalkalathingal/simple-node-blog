@@ -20,6 +20,9 @@ This is a code repository of a simple blog website created with nodejs
 
 #### [Live demo](http://blog-shahal-demo.herokuapp.com/)
 
+Go to /admin to login to the admin panel👆
+Username and password is "admin"
+
 #### Author : Shahal Kalathingal
 
 Please star this repository and make sure to follow me!!
