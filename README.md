@@ -16,7 +16,9 @@ This is a code repository of a simple blog website created with nodejs
 ### routes
 - "/admin" to see the admin panel
 - default username and password is "test"
-- You can change it by going to the ".env" file and after changing to make sure to rerun the application 
+- You can change it by going to the ".env" file and after changing it make sure to rerun the application 
 
 
-Author : Shahal Kalathingal
+#### Author : Shahal Kalathingal
+
+Please star this repository and make sure to follow me!!
