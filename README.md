@@ -18,6 +18,7 @@ This is a code repository of a simple blog website created with nodejs
 - default username and password is "test"
 - You can change it by going to the ".env" file and after changing it make sure to rerun the application 
 
+#### [Live demo](http://blog-shahal-demo.herokuapp.com/)
 
 #### Author : Shahal Kalathingal
 
