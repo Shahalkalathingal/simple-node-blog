@@ -3,6 +3,7 @@ This is a code repository of a simple blog website created with nodejs
 
 ### Technoogies used :-
 - Nodejs
+- Express
 - Handlebars as the template engine
 - Nedb as the database
 
